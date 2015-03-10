@@ -6,6 +6,14 @@ class PostsController < ApplicationController
     @posts = Post.all.order('created_at DESC')
   end
 
+  def search
+    if params[:search].present?
+      @posts = Post.search(params[:search])
+    else
+      @posts = Post.all
+    end
+  end
+
   def new
     @post = current_user.posts.build
   end
