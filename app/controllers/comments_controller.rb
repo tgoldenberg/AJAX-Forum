@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     @post = Post.find(params[:post_id])
     @comment = @post.comments.create(params[:comment].permit(:comment))
@@ -35,9 +37,10 @@ class CommentsController < ApplicationController
     redirect_to post_path(@post)
   end
 
-
-
-
-
+  def upvote
+    @comment = Comment.find(params[:id])
+    @comment.upvote_by current_user
+    redirect_to :back
+  end
 
 end
