@@ -8,23 +8,8 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <header class="main-header">
-    <div id="logo">
-      <th><%= link_to 'Language Forum', root_path %></th>
-      <div id="buttons">
-        <% if user_signed_in? %>
-        <li><%= link_to 'Account', edit_user_registration_path, class: 'btn btn-primary' %></li>
-        <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'btn btn-default' %></li>
-        <li><%= link_to 'New Post', new_post_path, class: 'btn btn-primary' %></li>
-
-        <% else %>
-        <li><%= link_to 'New Post', new_post_path, class: 'btn btn-primary' %></li>
-        <li><%= link_to 'Sign up', new_user_registration_path, class: 'btn btn-default' %></li>
-        <li><%= link_to 'Sign in', new_user_session_path, class: 'btn btn-success' %></li>
-        <% end %>
-      </div>
-    </div>
-  </header>
+  <%= render 'layouts/header' %>
+  
 
   <div class="wrapper">
     <p class="notice"><%= notice %></p>

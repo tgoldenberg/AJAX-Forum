@@ -31,10 +31,23 @@
 
 }
 
+.buttons {
+  float:right;
+  display:inline;
+  padding-bottom: 20px;
+}
+
 #buttons {
+  float:right;
+
 
   li {
     display: inline;
-    float: right;
+    text-align:right;
   }
+}
+
+.comment {
+  border-bottom: 1px solid #D1D1D1;
+  padding: 2em;
 }
