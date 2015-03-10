@@ -2,13 +2,38 @@
 <html>
 <head>
   <title>Forum</title>
+  <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <header class="main-header">
+    <div id="logo">
+      <th><%= link_to 'Language Forum', root_path %></th>
+      <div id="buttons">
+        <% if user_signed_in? %>
+        <li><%= link_to 'Account', edit_user_registration_path, class: 'btn btn-primary' %></li>
+        <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'btn btn-default' %></li>
+        <li><%= link_to 'New Post', new_post_path, class: 'btn btn-primary' %></li>
 
-<%= yield %>
+        <% else %>
+        <li><%= link_to 'New Post', new_post_path, class: 'btn btn-primary' %></li>
+        <li><%= link_to 'Sign up', new_user_registration_path, class: 'btn btn-default' %></li>
+        <li><%= link_to 'Sign in', new_user_session_path, class: 'btn btn-success' %></li>
+        <% end %>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrapper">
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+  </div>
+
+  <div class="wrapper">
+    <%= yield %>
+  </div>
 
 </body>
 </html>

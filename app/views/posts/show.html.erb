@@ -1,0 +1,26 @@
+<h1><%= @post.title %></h1>
+<p><%= @post.content %> </p>
+
+<div id="comments">
+  <% if @post.comments.count == 1 %>
+  <h2><%= @post.comments.count %> comment</h2>
+  <% else %>
+  <h2><%= @post.comments.count %> comments</h2>
+  <% end %>
+  <% @post.comments.each do |comment| %>
+  <div class="comment">
+    <p><%= comment.comment %></p>
+    <p><%= comment.user.email %></p>
+    <%= link_to 'Edit', edit_post_comment_path(comment.post, comment) %>
+    <%= link_to 'Delete', [comment.post, comment], method: :delete, data: { confirm: 'Are you sure?'} %>
+
+  </div>
+  <% end %>
+  <h3>Reply to thread</h3>
+  <%= render 'comments/form' %>
+
+</div>
+
+<%= link_to 'Edit', edit_post_path(@post) %>
+<%= link_to 'Destroy', post_path(@post), method: :delete, data: { confirm: "Are you sure?"} %>
+<%= link_to 'Home', root_path %>
