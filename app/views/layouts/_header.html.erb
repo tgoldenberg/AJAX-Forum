@@ -1,12 +1,34 @@
 <div class="navbar navbar-default navbar-static-top">
   <div class="container">
-    <a id="root-link" class="navbar-brand" href="#">Speakit<%= image_tag "globe-logo.png", :id => "logo" %></a>
+    <div class="col-md-5">
+      <a id="root-link" class="navbar-brand" href="#">Speakit<%= image_tag "globe-logo.png", :id => "logo" %></a>
+    </div>
+    <div class="col-md-3">
+      <% flash.each do |name, msg| %>
+        <% if msg.is_a?(String) %>
+          <%= content_tag :div, msg, :class => "flash_#{name}", :id => "flash" %>
+        <% end %>
+      <% end %>
+    </div>
+
     <div class="navbar-collapse collapse navbar-responsive-collapse navbar-right">
       <ul class="nav navbar-nav">
-        <li><%= link_to "Sign in", "/path1"  %></li>
-        <li><%= link_to "Sign up", "/path2"  %></li>
-        <li><%= link_to "About", "/path3"  %></li>
+        <% if user_signed_in? %>
+        <li><%= link_to 'Account', edit_user_registration_path  %></li>
+        <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
+
+        <% else %>
+        <li><%= link_to "Sign in", new_user_session_path  %></li>
+        <li><%= link_to "Sign up", new_user_registration_path  %></li>
+        <li><%= link_to "About", "#"  %></li>
+        <% end %>
       </ul>
     </div>
   </div>
 </div>
+
+<script>
+$(function(){
+  $('#flash').fadeOut(2600);
+})
+</script>

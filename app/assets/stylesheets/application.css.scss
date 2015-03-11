@@ -15,6 +15,20 @@
  */
 
 /* Styling for Forum home page */
+
+
+
+#category-name {
+  text-decoration: none;
+}
+
+#flash {
+  margin-top:20px;
+  padding-bottom:0px;
+  color: #6E6E6E;
+  font-weight: 900;
+
+}
 .btn-default {
   background: #F5F5F5;
 }
@@ -139,6 +153,7 @@ body {
   border-bottom: 1px solid #D1D1D1;
   padding: 2em;
 }
+
 
 h2 {
   text-decoration: none;

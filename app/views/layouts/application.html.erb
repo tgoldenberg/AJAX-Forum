@@ -11,14 +11,11 @@
 <body>
   <%= render 'layouts/header' %>
 
-  <% flash.each do |name, msg| %>
-    <% if msg.is_a?(String) %>
-      <%= content_tag :div, msg, :class => "flash_#{name}" %>
-    <% end %>
-  <% end %>
 
   <%= yield %>
 
 
+  <div class="container" style="height:200px;">
+  </div>
 </body>
 </html>
