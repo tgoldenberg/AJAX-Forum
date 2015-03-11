@@ -39,46 +39,39 @@
 
     <% @post.comments.each do |comment| %>
 
-    <div class="comment col-md-12">
-      <div class="col-md-8">
-        <p><%= comment.comment %></p>
-        <p id="published-by">Published at <%= time_ago_in_words(comment.created_at) %> by <%= comment.user.email %></p>
-      </div>
-      <div class="col-md-4">
+      <div class="comment col-md-12" style="padding-left:10px;">
 
-      <div class="buttons">
+        <div class="col-md-8" style="padding-left:0px">
+          <p><%= comment.comment %></p>
+          <p id="published-by">Published at <%= time_ago_in_words(comment.created_at) %> by <%= comment.user.email %></p>
+        </div>
 
-        <%= link_to like_post_comment_path(comment.post, comment), method: :put, class: 'btn btn-default btn-sm' do %>
-        <span class="glyphicon glyphicon-thumbs-up"></span> <%= comment.get_upvotes.size %>
-        <% end %>
+        <div class="col-md-4">
 
-        <%= link_to dislike_post_comment_path(comment.post, comment), method: :put, class: 'btn btn-default btn-sm' do %>
-        <span class="glyphicon glyphicon-thumbs-down"></span> <%= comment.get_downvotes.size %>
-        <% end %>
+          <div class="buttons">
+            <%= link_to like_post_comment_path(comment.post, comment), method: :put, class: 'btn btn-default btn-sm' do %>
+              <span class="glyphicon glyphicon-thumbs-up"></span> <%= comment.get_upvotes.size %>
+            <% end %>
 
-        <% if current_user == comment.user %>
+            <%= link_to dislike_post_comment_path(comment.post, comment), method: :put, class: 'btn btn-default btn-sm' do %>
+              <span class="glyphicon glyphicon-thumbs-down"></span> <%= comment.get_downvotes.size %>
+            <% end %>
 
-        <%= link_to '', edit_post_comment_path(comment.post, comment), class: 'btn btn-default glyphicon glyphicon-pencil btn-sm' %>
-        <%= link_to '', [comment.post, comment], method: :delete, data: { confirm: 'Are you sure?'}, class: 'btn btn-default glyphicon glyphicon-trash btn-sm' %>
+            <% if current_user == comment.user %>
+              <%= link_to '', edit_post_comment_path(comment.post, comment), class: 'btn btn-default glyphicon glyphicon-pencil btn-sm' %>
+              <%= link_to '', [comment.post, comment], method: :delete, data: { confirm: 'Are you sure?'}, class: 'btn btn-default glyphicon glyphicon-trash btn-sm' %>
+            <% end %>
+          </div>
 
-        <% end %>
-      </div>
-    </div>
-    <div class="col-md-12">
+        </div>
+      <div class="col-md-12">
     </div>
   </div>
+<% end %>
 
-
-    <% end %>
-
-
-    <div class="col-md-12">
-      <h3>Reply to thread</h3>
-      <br />
-      <%= render 'comments/form' %>
-      <div class="container" style="height:200px;"></div>
-    </div>
-
-
-  </div>
+<div class="col-md-12" style="padding-left:0px;">
+  <h3>Reply to thread</h3>
+  <br />
+  <%= render 'comments/form' %>
+  <div class="container" style="height:200px;"></div>
 </div>
