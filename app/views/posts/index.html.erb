@@ -1,15 +1,60 @@
-<h1>Posts</h1>
+<div id="index-top" class="container-fluid">
+  <div class="col-md-4">
+    <div class="well">
+    <h1>speakit <b>forum</b> <%= image_tag "logo.png", :id => 'quote-1'%></h1>
+    </div>
+  </div>
+  <div class="col-md-4"><%= form_tag search_posts_path, method: :get, class: 'navbar-form navbar-center', role: 'search' do %>
+  <p>
+    <%= text_field_tag :search, params[:search], class: 'form-control' %>
+    <%= submit_tag "Search", name: nil, class: 'btn btn-primary btn-lg' %>
+  </p>
+  <% end %>
+  </div>
+  <div class="col-md-4">
 
-<% @posts.each do |post| %>
+    <div class="dropdown">
+      <h4 id="search-by">Search by</h4><h4>Create a new post</h4><br />
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+        Most Recent
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Most Popular</a></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">English</a></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Spanish</a></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Chinese</a></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Hindi</a></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sanskrit</a></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Malayalam</a></li>
+      </ul>
 
-<h2><%= link_to post.title, post, style: "text-decoration: none;" %></h2>
+      <button class="btn btn-default new-post">
+        <%= link_to 'New Post', new_post_path, id: "new-post" %>
+      </button>
+    </div>
+  </div>
 
-<button type="button" class="button btn btn-default btn-sm" style="background: #EEE;">
-  <span class="glyphicon glyphicon-thumbs-up"> </span> <%= post.get_upvotes.size %>
-</button>
-<p>Published at <%= time_ago_in_words(post.created_at) %> by <%= post.user.email %></p>
 
-<p><%= post.content.first(144) %></p>
-<% end %>
 
-<%= link_to 'New Post', new_post_path %>
+
+</div>
+
+
+<div class="container" style="margin-left: 30px;">
+  <div class="col-md-8">
+    <% @posts.each do |post| %>
+
+    <h2><%= link_to post.title, post, style: "text-decoration: none;" %></h2>
+
+    <button type="button" class="button btn btn-default btn-sm" style="background: #EEE;">
+      <span class="glyphicon glyphicon-thumbs-up"> </span> <%= post.get_upvotes.size %>
+    </button>
+    <p>Published at <%= time_ago_in_words(post.created_at) %> by <%= post.user.email %></p>
+
+    <p><%= post.content.first(144) %></p>
+    <% end %>
+
+    <%= link_to 'New Post', new_post_path %>
+  </div>
+</div>

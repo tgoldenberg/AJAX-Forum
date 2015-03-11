@@ -14,7 +14,81 @@
  *= require_self
  */
 
+/* Styling for Forum home page */
+body {
+  background: white;
+}
 
+#index-top {
+  background: white;
+  padding: 0px;
+  height: 118px;
+  .well {
+    margin-left: 0px;
+    border-radius: 13px;
+    height: 80px;
+
+    h1{
+      text-align: center;
+      margin-bottom: auto;
+      margin-top: auto;
+      font-weight: 300;
+    }
+    #quote-1 {
+      width: 60px;
+      margin-bottom: 7px;
+    }
+  }
+
+  .form-control {
+    margin-left: 10px;
+    margin-top: 8px;
+    width: 250px;
+    height: 43px;
+  }
+  .btn {
+    margin-top: 8px;
+    margin-left: 2px;
+  }
+  .dropdown-toggle {
+    background: #F5F5F5;
+    margin-top:1px;
+    margin-left: 20px;
+    text-decoration: none;
+    color: black;
+  }
+  h4 {
+    margin-top: 12px;
+    font-weight: 200;
+    display: inline;
+    font-size: 16px;
+  }
+  #search-by {
+    margin-left:45px;
+    padding-right: 45px;
+  }
+
+  #new-post {
+    text-decoration: none;
+    color: black;
+  }
+  .new-post {
+    background: #F5F5F5;
+    margin-left: 40px;
+    margin-top: 1px;
+  }
+
+
+
+}
+
+
+
+
+#logo {
+  width: 30px;
+  display:inline;
+}
 .wrapper {
   width: 60%;
   max-width: 1140px;
