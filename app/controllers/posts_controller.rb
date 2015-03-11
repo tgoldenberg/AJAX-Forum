@@ -6,6 +6,10 @@ class PostsController < ApplicationController
     @posts = Post.paginate(page: params[:page], :per_page => 10).order('created_at DESC')
   end
 
+  def popular
+    @posts = Post.paginate(page: params[:page], :per_page => 10).order('cached_votes_up')
+  end
+
   def search
     if params[:search].present?
       @posts = Post.search(params[:search])
@@ -48,6 +52,12 @@ class PostsController < ApplicationController
     redirect_to :back
   end
 
+  def downvote
+    @post = Post.find(params[:id])
+    @post.downvote_by current_user
+    redirect_to :back
+  end
+
   def show
     @post = Post.find(params[:id])
   end
@@ -59,7 +69,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :content)
+    params.require(:post).permit(:title, :content, :category_id)
   end
 
 end

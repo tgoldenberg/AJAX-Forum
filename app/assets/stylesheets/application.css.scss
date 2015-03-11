@@ -53,9 +53,14 @@ body {
   .dropdown-toggle {
     background: #F5F5F5;
     margin-top:1px;
-    margin-left: 20px;
+    margin-left: 33px;
     text-decoration: none;
     color: black;
+    width: 98px;
+  }
+
+  #dropdownMenu1 {
+    text-align:center;
   }
   h4 {
     margin-top: 12px;
@@ -74,7 +79,7 @@ body {
   }
   .new-post {
     background: #F5F5F5;
-    margin-left: 40px;
+    margin-left: 50px;
     margin-top: 1px;
   }
 

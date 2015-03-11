@@ -1,4 +1,10 @@
 <%= simple_form_for @post do |f| %>
+  <div class="form-group">
+    <%= f.label :category %>
+    <%= f.collection_select :category_id, Category.all, :id, :name, {
+      include_blank: "Please select..." }, {class: 'form-control'} %>
+  </div>
+  
   <%= f.input :title %>
   <%= f.input :content %>
   <%= f.submit %>

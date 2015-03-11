@@ -16,7 +16,7 @@
     <div class="dropdown">
       <h4 id="search-by">Search by</h4><h4>Create a new post</h4><br />
       <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-        Category
+        <%= @category.name.split(" ").first %>
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
@@ -25,7 +25,7 @@
         <%= link_to category.name, category %>
         </li>
         <% end %>
-        <li role="presentation"><%= link_to 'Most Popular', popular_path %></li>
+        <li role="presentation"> <%= link_to 'Most Popular', popular_path %></li>
         <li role="presentation"><%= link_to 'Most Recent', root_path %></li>
       </ul>
 
@@ -36,7 +36,6 @@
   </div>
 </div>
 
-
 <div class="container" style="margin-left: 30px;">
   <div class="col-md-8">
     <% @posts.each do |post| %>
@@ -44,16 +43,13 @@
     <h2><%= link_to post.title, post, style: "text-decoration: none;" %></h2>
 
     <button type="button" class="button btn btn-default btn-sm" style="background: #EEE;">
-      <span class="glyphicon glyphicon-thumbs-up"> </span>&nbsp; <%= post.get_upvotes.size %>&nbsp;
-      <span class="glyphicon glyphicon-thumbs-down"> </span>&nbsp; <%= post.get_downvotes.size %>&nbsp;
-      <span class="glyphicon glyphicon-comment"> </span> &nbsp;<%= post.comments.count %><br />
+      <span class="glyphicon glyphicon-thumbs-up"> </span> <%= post.get_upvotes.size %>
     </button>
-
     <p>Published at <%= time_ago_in_words(post.created_at) %> by <%= post.user.email %></p>
 
     <p><%= post.content.first(144) %></p>
     <% end %>
-    <%= will_paginate %>
+    <%= will_paginate @posts %>
 
   </div>
 </div>
