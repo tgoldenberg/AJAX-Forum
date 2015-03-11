@@ -16,7 +16,15 @@
 
 /* Styling for Forum home page */
 
+.glyphicon {
+  font-weight: 300;
+  color: #4B4B4B;
+}
 
+#numbers {
+  font-weight: 300;
+  color: #4B4B4B;
+}
 
 #category-name {
   text-decoration: none;
@@ -26,7 +34,7 @@
   margin-top:20px;
   padding-bottom:0px;
   color: #6E6E6E;
-  font-weight: 900;
+  font-weight: 500;
 
 }
 .btn-default {
@@ -154,7 +162,14 @@ body {
   padding: 2em;
 }
 
-
+.comment-count {
+  font-size: 18px;
+  font-weight: 200;
+}
 h2 {
   text-decoration: none;
+}
+
+h3 {
+  font-weight: 300;
 }

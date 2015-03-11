@@ -9,7 +9,7 @@
     <% end %>
   </p>
 
-  <h1><%= @post.title %></h1>
+  <h1 style="font-weight:400;"><%= @post.title %></h1>
   <p><%= @post.content %> </p>
   <p id="published-by">Published at <%= time_ago_in_words(@post.created_at) %> by <%= @post.user.email %></p>
 
@@ -31,9 +31,9 @@
 
     <div class="comment" style="padding-top:0px; padding-left:0px; padding-bottom:17px;">
       <% if @post.comments.count == 1 %>
-      <h2><%= @post.comments.count %> comment</h2>
+      <h2 class="comment-count"><%= @post.comments.count %> comment</h2>
       <% else %>
-      <h2><%= @post.comments.count %> comments</h2>
+      <h2 class="comment-count"><%= @post.comments.count %> comments</h2>
       <% end %>
     </div>
 

@@ -16,7 +16,7 @@
     <div class="dropdown">
       <h4 id="search-by">Search by</h4><h4>Create a new post</h4><br />
       <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-        <%= @category.name.split(" ").first %>
+        <%= @category.name.split(" ").last %>
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
@@ -42,12 +42,12 @@
 
     <h2><%= link_to post.title, post, style: "text-decoration: none;" %></h2>
 
-    <li type="button" class="button btn btn-default btn-sm" style="background: #EEE;">
+    <li type="button" id="numbers" class="button btn btn-default btn-sm" style="background: #EEE;">
       <span class="glyphicon glyphicon-thumbs-up"> </span>&nbsp; <%= post.get_upvotes.size %>&nbsp;
       <span class="glyphicon glyphicon-thumbs-down"> </span>&nbsp; <%= post.get_downvotes.size %>&nbsp;
       <span class="glyphicon glyphicon-comment"> </span> &nbsp;<%= post.comments.count %>
     </li>
-    
+
     <p id="published-by">Published at <%= time_ago_in_words(post.created_at) %> by <%= post.user.email %></p>
 
     <p><%= post.content.first(144) %></p>
