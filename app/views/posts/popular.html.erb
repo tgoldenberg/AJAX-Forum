@@ -43,10 +43,13 @@
 
     <h2><%= link_to post.title, post, style: "text-decoration: none;" %></h2>
 
-    <button type="button" class="button btn btn-default btn-sm" style="background: #EEE;">
-      <span class="glyphicon glyphicon-thumbs-up"> </span> <%= post.get_upvotes.size %>
-    </button>
-    <p>Published at <%= time_ago_in_words(post.created_at) %> by <%= post.user.email %></p>
+    <li type="button" class="button btn btn-default btn-sm" style="background: #EEE;">
+      <span class="glyphicon glyphicon-thumbs-up"> </span>&nbsp; <%= post.get_upvotes.size %>&nbsp;
+      <span class="glyphicon glyphicon-thumbs-down"> </span>&nbsp; <%= post.get_downvotes.size %>&nbsp;
+      <span class="glyphicon glyphicon-comment"> </span> &nbsp;<%= post.comments.count %>
+    </li>
+    
+    <p id="published-by">Published at <%= time_ago_in_words(post.created_at) %> by <%= post.user.email %></p>
 
     <p><%= post.content.first(144) %></p>
     <% end %>
