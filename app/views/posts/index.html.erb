@@ -34,10 +34,6 @@
       </button>
     </div>
   </div>
-
-
-
-
 </div>
 
 
@@ -54,7 +50,9 @@
 
     <p><%= post.content.first(144) %></p>
     <% end %>
+    <%= will_paginate %>
 
-    <%= link_to 'New Post', new_post_path %>
   </div>
 </div>
+
+<div class="container" style="height:200px;"></div>
