@@ -16,17 +16,17 @@
     <div class="dropdown">
       <h4 id="search-by">Search by</h4><h4>Create a new post</h4><br />
       <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-        Most Recent
+        Category
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Most Popular</a></li>
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">English</a></li>
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Spanish</a></li>
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Chinese</a></li>
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Hindi</a></li>
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sanskrit</a></li>
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Malayalam</a></li>
+        <% Category.order('created_at ASC').each do |category| %>
+        <li>
+        <%= link_to category.name, category %>
+        </li>
+        <% end %>
+        <li role="presentation"><%= link_to 'Most Popular', popular_path %></li>
+        <li role="presentation"><%= link_to 'Most Recent', root_path %></li>
       </ul>
 
       <button class="btn btn-default new-post">
@@ -41,16 +41,15 @@
   <% @posts.each do |post| %>
 
   <h2><%= link_to post.title, post %></h2>
-  <li type="button" class="button btn btn-default btn-sm" style="background: #EEE;">
 
     <span class="glyphicon glyphicon-thumbs-up"> </span>&nbsp; <%= post.get_upvotes.size %>&nbsp;
     <span class="glyphicon glyphicon-thumbs-down"> </span>&nbsp; <%= post.get_downvotes.size %>&nbsp;
     <span class="glyphicon glyphicon-comment"> </span> &nbsp;<%= post.comments.count %>
 
-  </li>
   <p id="published-by">Published at <%= time_ago_in_words(post.created_at) %> by <%= post.user.email %></p>
   <p><%= post.content %></p>
   <% end %>
+
 
   <%= link_to 'New Post', new_post_path %>
 </div>
