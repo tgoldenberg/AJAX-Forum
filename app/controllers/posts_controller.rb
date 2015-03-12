@@ -7,7 +7,7 @@ class PostsController < ApplicationController
   end
 
   def popular
-    @posts = Post.paginate(page: params[:page], :per_page => 10).order('cached_votes_up')
+    @posts = Post.paginate(page: params[:page], :per_page => 10).order('cached_votes_up DESC')
   end
 
   def search
