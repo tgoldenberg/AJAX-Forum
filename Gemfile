@@ -5,6 +5,8 @@ gem 'rails', '4.2.0'
 
 gem 'simple_form'
 gem 'searchkick'
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'devise'
 gem 'sass-rails', '~> 5.0'
@@ -28,6 +30,7 @@ group :development, :test do
 end
 
 group :production do
+  gem 'bonsai-elasticsearch-rails'
   gem 'pg',             '0.17.1'
   gem 'rails_12factor', '0.0.2'
   gem 'puma',           '2.11.1'
