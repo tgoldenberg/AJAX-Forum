@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 gem 'rails', '4.2.0'
-gem 'sqlite3'
+
 gem 'simple_form'
 gem 'searchkick'
 gem 'acts_as_votable', '~> 0.10.0'
@@ -21,7 +21,14 @@ gem "twitter-bootstrap-rails"
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 group :development, :test do
+  gem 'sqlite3'
   gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring'
+end
+
+group :production do
+  gem 'pg',             '0.17.1'
+  gem 'rails_12factor', '0.0.2'
+  gem 'puma',           '2.11.1'
 end
