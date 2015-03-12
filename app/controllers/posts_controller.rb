@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  respond_to :html, :js
+
   before_action :find_post, only: [:show, :edit, :update, :destroy, :upvote]
   before_action :authenticate_user!, except: [:show, :index]
 
