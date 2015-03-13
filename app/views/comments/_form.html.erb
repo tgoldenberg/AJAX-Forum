@@ -1,5 +1,5 @@
-<%= simple_form_for([@post, @post.comments.build]) do |f| %>
+<%= simple_form_for([@post, @post.comments.build], remote: true) do |f| %>
   <%= f.input :comment, :style => "font-weight:500;" %>
-  <%= f.submit "Comment", :class => "btn btn-primary" %>
+  <%= f.submit "Comment", :class => "btn btn-primary", :id => 'comment-submit' %>
   <%= link_to 'Forum Home', root_path, class: 'btn btn-default' %>
 <% end %>

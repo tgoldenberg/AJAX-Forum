@@ -1,0 +1,77 @@
+<div class="wrapper">
+
+  <p>
+    <strong>Category:</strong>
+    <% if @post.category %>
+      <%= link_to @post.category.name, @post.category, id: "category-name" %>
+    <% else %>
+      none
+    <% end %>
+  </p>
+
+  <h1 style="font-weight:400;"><%= @post.title %></h1>
+  <p><%= @post.content %> </p>
+  <p id="published-by">Published at <%= time_ago_in_words(@post.created_at) %> by <%= @post.user.email %></p>
+
+
+  <%= link_to like_post_path(@post), method: :put, class: "btn btn-default" do %>
+    <span class="glyphicon glyphicon-thumbs-up"> </span> <%= @post.get_upvotes.size %>
+  <% end %>
+
+  <%= link_to dislike_post_path(@post), method: :put, class: "btn btn-default" do %>
+    <span class="glyphicon glyphicon-thumbs-down"></span> <%= @post.get_downvotes.size %>
+  <% end %>
+
+  <% if current_user == @post.user %>
+    <%= link_to '', edit_post_path(@post), class: 'btn btn-default glyphicon glyphicon-pencil'  %>
+    <%= link_to '', @post, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-default glyphicon glyphicon-trash' %>
+  <% end %>
+
+  <div id="comments">
+
+    <div class="comment" style="padding-top:0px; padding-left:0px; padding-bottom:17px;">
+      <% if @post.comments.count == 1 %>
+      <h2 class="comment-count"><%= @post.comments.count %> comment</h2>
+      <% else %>
+      <h2 class="comment-count"><%= @post.comments.count %> comments</h2>
+      <% end %>
+    </div>
+
+    <% @post.comments.each do |comment| %>
+
+      <div class="comment col-md-12" style="padding-left:10px;">
+
+        <div class="col-md-8" style="padding-left:0px">
+          <p><%= comment.comment %></p>
+          <p id="published-by">Published at <%= time_ago_in_words(comment.created_at) %> by <%= comment.user.email %></p>
+        </div>
+
+        <div class="col-md-4">
+
+          <div class="buttons">
+            <%= link_to like_post_comment_path(comment.post, comment), method: :put, remote: true, class: 'btn btn-default btn-sm' do %>
+              <span class="glyphicon glyphicon-thumbs-up"></span> <%= comment.get_upvotes.size %>
+            <% end %>
+
+            <%= link_to dislike_post_comment_path(comment.post, comment), method: :put, remote: true, class: 'btn btn-default btn-sm' do %>
+              <span class="glyphicon glyphicon-thumbs-down"></span> <%= comment.get_downvotes.size %>
+            <% end %>
+
+            <% if current_user == comment.user %>
+              <%= link_to '', edit_post_comment_path(comment.post, comment), remote: true, class: 'btn btn-default glyphicon glyphicon-pencil btn-sm' %>
+              <%= link_to '', [comment.post, comment], method: :delete, remote: true, data: { confirm: 'Are you sure?'}, class: 'btn btn-default glyphicon glyphicon-trash btn-sm' %>
+            <% end %>
+          </div>
+
+        </div>
+      <div class="col-md-12">
+    </div>
+  </div>
+<% end %>
+
+<div class="col-md-12" style="padding-left:0px;">
+  <h3>Reply to thread</h3>
+  <br />
+  <%= render 'comments/form' %>
+  <div class="container" style="height:200px;"></div>
+</div>
