@@ -50,14 +50,21 @@ class PostsController < ApplicationController
   end
 
   def upvote
+    @post = Post.find(params[:id])
     @post.upvote_by current_user
-    redirect_to :back
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.json { render json: { count: @post.get_upvotes.size, countTwo: @post.get_downvotes.size }}
+    end
   end
 
   def downvote
     @post = Post.find(params[:id])
     @post.downvote_by current_user
-    redirect_to :back
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.json { render json: { count: @post.get_downvotes.size, countTwo: @post.get_upvotes.size }}
+    end
   end
 
   def show
